@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="925b3c13fe5945898f9f7d444ffb39f6" Name="Diagram1">
+        <EntityTypeShape EntityType="ЮнусовАвтоСервисModel.Client" Width="1.5" PointX="0.75" PointY="7.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="ЮнусовАвтоСервисModel.ClientService" Width="1.5" PointX="3" PointY="9.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="ЮнусовАвтоСервисModel.DocumentByService" Width="1.5" PointX="5.25" PointY="10" IsExpanded="true" />
+        <EntityTypeShape EntityType="ЮнусовАвтоСервисModel.Gender" Width="1.5" PointX="1.5" PointY="13.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="ЮнусовАвтоСервисModel.Manufacturer" Width="1.5" PointX="0.75" PointY="4" IsExpanded="true" />
+        <EntityTypeShape EntityType="ЮнусовАвтоСервисModel.Product" Width="1.5" PointX="3" PointY="3.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="ЮнусовАвтоСервисModel.ProductPhoto" Width="1.5" PointX="5.25" PointY="4" IsExpanded="true" />
+        <EntityTypeShape EntityType="ЮнусовАвтоСервисModel.ProductSale" Width="1.5" PointX="5.25" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ЮнусовАвтоСервисModel.Service" Width="1.5" PointX="0.75" PointY="16.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ЮнусовАвтоСервисModel.ServicePhoto" Width="1.5" PointX="3" PointY="19.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="ЮнусовАвтоСервисModel.Tag" Width="1.5" PointX="3" PointY="16.25" IsExpanded="true" />
+        <AssociationConnector Association="ЮнусовАвтоСервисModel.FK_Client_Gender" ManuallyRouted="false" />
+        <AssociationConnector Association="ЮнусовАвтоСервисModel.FK_ClientService_Client" ManuallyRouted="false" />
+        <AssociationConnector Association="ЮнусовАвтоСервисModel.FK_ClientService_Service" ManuallyRouted="false" />
+        <AssociationConnector Association="ЮнусовАвтоСервисModel.FK_DocumentByService_ClientService" ManuallyRouted="false" />
+        <AssociationConnector Association="ЮнусовАвтоСервисModel.FK_ProductSale_ClientService" ManuallyRouted="false" />
+        <AssociationConnector Association="ЮнусовАвтоСервисModel.FK_Product_Manufacturer" ManuallyRouted="false" />
+        <AssociationConnector Association="ЮнусовАвтоСервисModel.FK_ProductPhoto_Product" ManuallyRouted="false" />
+        <AssociationConnector Association="ЮнусовАвтоСервисModel.FK_ProductSale_Product" ManuallyRouted="false" />
+        <AssociationConnector Association="ЮнусовАвтоСервисModel.FK_ServicePhoto_Service" ManuallyRouted="false" />
+        <AssociationConnector Association="ЮнусовАвтоСервисModel.AttachedProduct" ManuallyRouted="false" />
+        <AssociationConnector Association="ЮнусовАвтоСервисModel.TagOfClient" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
