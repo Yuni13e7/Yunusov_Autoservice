@@ -80,7 +80,7 @@ namespace Yunusov_Autoservice
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            Manager.MainFrame.Navigate(new AddEditPage());
+           
         }
 
         private void RadioButton_Checked(object sender, RoutedEventArgs e)
@@ -228,6 +228,23 @@ namespace Yunusov_Autoservice
         private void RightDirButton_Click(object sender, RoutedEventArgs e)
         {
             ChangePage(2, null);
+        }
+        private void AddButton_Click(object sender, RoutedEventArgs e)
+        {
+            Manager.MainFrame.Navigate(new AddEditPage(null));
+        }
+
+        private void Editbuttton_Click(object sender, RoutedEventArgs e)
+        {
+            Manager.MainFrame.Navigate(new AddEditPage((sender as Button).DataContext as Service));
+        }
+        private void Page_IsVisibleChanged(object sender, DependencyPropertyChangedEventArgs e)
+        {
+            if (Visibility == Visibility.Visible)
+            {
+                ЮнусовАвтоСервисEntities.GetContext().ChangeTracker.Entries().ToList().ForEach(p => p.Reload());
+                ServiceListView.ItemsSource = ЮнусовАвтоСервисEntities.GetContext().Service.ToList();
+            }
         }
     }
 }

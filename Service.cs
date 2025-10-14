@@ -27,7 +27,18 @@ namespace Yunusov_Autoservice
         public string Duration { get; set; }
         public decimal Cost { get; set; }
         public double Discount { get; set; }
-        public int DiscountInt { get { return (int)(Discount * 100); } }
+        public int DiscountInt 
+        { get
+            {
+                if (Discount != null)
+                {
+                    return (int)(Discount * 100); 
+                }
+                else
+                    return 0;
+             }
+         set { this.Discount = value/100.0; }
+        }
         public string Description { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
