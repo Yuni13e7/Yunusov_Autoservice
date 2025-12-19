@@ -13,19 +13,18 @@ namespace Yunusov_Autoservice
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class ЮнусовАвтоСервисEntities : DbContext
+    public partial class ЮнусовАвтоСервисEntities1 : DbContext
     {
-        private static ЮнусовАвтоСервисEntities _context;
-
-        public static ЮнусовАвтоСервисEntities GetContext()
+        private static ЮнусовАвтоСервисEntities1 _context;
+        public static ЮнусовАвтоСервисEntities1 GetContext()
         {
             if (_context == null)
-                _context = new ЮнусовАвтоСервисEntities();
+                _context = new ЮнусовАвтоСервисEntities1();
             return _context;
-        }
 
-        public ЮнусовАвтоСервисEntities()
-            : base("name=ЮнусовАвтоСервисEntities")
+        }
+        public ЮнусовАвтоСервисEntities1()
+            : base("name=ЮнусовАвтоСервисEntities1")
         {
         }
     

@@ -12,6 +12,8 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.Text.RegularExpressions;
+using System.Data.Entity;
 
 namespace Yunusov_Autoservice
 {
@@ -21,45 +23,63 @@ namespace Yunusov_Autoservice
     public partial class AddEditPage : Page
     {
         private Service _currentServise = new Service();
-        public AddEditPage( Service SelectedService)
+        public AddEditPage(Service SelectedService)
         {
             InitializeComponent();
             if (SelectedService != null)
-            {
                 _currentServise = SelectedService;
-            }
             DataContext = _currentServise;
         }
 
         private void SaveButton_Click(object sender, RoutedEventArgs e)
         {
             StringBuilder errors = new StringBuilder();
+
             if (string.IsNullOrWhiteSpace(_currentServise.Title))
                 errors.AppendLine("Укажите название услуги");
             if (_currentServise.Cost == 0)
                 errors.AppendLine("Укажите стоимость услуги");
-            if (_currentServise.DiscountInt < 0)
-                errors.AppendLine("укажите скидку");
-            if (string.IsNullOrWhiteSpace(_currentServise.Duration))
+            if (_currentServise.DiscountInt < 0 || _currentServise.DiscountInt > 100)
+                errors.AppendLine("Укажите скидку от 0 до 100");
+            if (_currentServise.Duration == 0)
                 errors.AppendLine("Укажите длительность услуги");
-            if(errors.Length > 0)
+            if (_currentServise.Duration > 240)
+                errors.AppendLine("Длительность не может быть больше 240 минут");
+
+            if (errors.Length > 0)
             {
                 MessageBox.Show(errors.ToString());
                 return;
             }
-            if(_currentServise.ID ==0)
-                ЮнусовАвтоСервисEntities.GetContext().Service.Add(_currentServise);
-            try
-            {
-                ЮнусовАвтоСервисEntities.GetContext().SaveChanges();
-                MessageBox.Show("информация сохранена");
-                Manager.MainFrame.GoBack();
-            }
-            catch(Exception ex)
-            {
-                MessageBox.Show(ex.Message.ToString());
-            }
+            var context = ЮнусовАвтоСервисEntities1.GetContext();
+            var existingService = context.Service.FirstOrDefault(p => p.Title == _currentServise.Title && p.ID != _currentServise.ID);
 
+            if (existingService == null)
+            {
+                if (_currentServise.ID == 0)
+                {
+                    context.Service.Add(_currentServise);
+                }
+                else
+                {
+                    context.Entry(_currentServise).State = EntityState.Modified;
+                }
+
+                try
+                {
+                    context.SaveChanges();
+                    MessageBox.Show("Информация сохранена");
+                    Manager.MainFrame.GoBack();
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message.ToString());
+                }
+            }
+            else
+            {
+                MessageBox.Show("Уже существует такая услуга");
+            }
         }
     }
 }
